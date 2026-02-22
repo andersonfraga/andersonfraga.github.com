@@ -1,0 +1,112 @@
+/* style.css */
+:root {
+    --bg-color: #0a1a2a; /* Azul noite nórdica */
+    --text-color: #e0f7fa; /* Branco gelo */
+    --accent-color: #81d4fa; /* Azul claro */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom, var(--bg-color), #1c3a53);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    margin-top: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    width: 400px;
+}
+
+h1 {
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.clue-area {
+    margin: 30px 0;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.next-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.next-btn:hover {
+    transform: scale(1.05);
+    background-color: #b3e5fc;
+}
+
+/* --- Animações do Urso --- */
+.bear-eyes {
+    animation: blink 4s infinite;
+}
+.bear-head {
+    animation: breathe 3s ease-in-out infinite alternate;
+    transform-origin: center bottom;
+}
+
+@keyframes blink {
+    0%, 96%, 100% { transform: scaleY(1); }
+    98% { transform: scaleY(0.1); }
+}
+@keyframes breathe {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+}
+
+/* --- Animações das Pistas --- */
+.snowflake { animation: snowfall 3s linear infinite; }
+.star { animation: twinkle 2s ease-in-out infinite alternate; }
+.ship { animation: floatShip 3s ease-in-out infinite alternate; }
+
+@keyframes snowfall {
+    0% { transform: translateY(-20px); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(50px); opacity: 0; }
+}
+@keyframes twinkle {
+    0% { opacity: 0.5; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1.1); }
+}
+@keyframes floatShip {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-10px) rotate(2deg); }
+}
+
+/* Animação do vapor do café */
+.steam {
+    animation: riseSteam 3s infinite ease-in-out;
+    opacity: 0;
+}
+.steam:nth-child(2) {
+    animation-delay: 1.5s;
+}
+@keyframes riseSteam {
+    0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
+    50% { transform: translateY(-15px) translateX(5px) scale(1.2); opacity: 0.3; }
+    100% { transform: translateY(-30px) translateX(-5px) scale(1.5); opacity: 0; }
+}

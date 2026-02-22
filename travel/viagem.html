@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surpresa - Pista 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Olá! Tenho um segredo...</h1>
+        
+        <svg class="bear-head" width="150" height="150" viewBox="0 0 200 220">
+            <circle cx="40" cy="50" r="35" fill="#f0f8ff"/><circle cx="160" cy="50" r="35" fill="#f0f8ff"/>
+            <circle cx="40" cy="50" r="20" fill="#e0f2f1"/><circle cx="160" cy="50" r="20" fill="#e0f2f1"/>
+            <ellipse cx="100" cy="100" rx="90" ry="80" fill="#f0f8ff"/><ellipse cx="100" cy="120" rx="45" ry="35" fill="#e0f2f1"/>
+            <path d="M 85 110 Q 100 130 115 110 L 100 125 Z" fill="#2c3e50"/>
+            <g class="bear-eyes"><circle cx="75" cy="90" r="8" fill="#2c3e50"/><circle cx="125" cy="90" r="8" fill="#2c3e50"/></g>
+            
+            <path d="M 25 145 Q 100 185 175 145 Q 165 170 100 180 Q 35 170 25 145 Z" fill="#d32f2f"/> <path d="M 125 155 L 115 205 L 145 205 L 150 150 Z" fill="#b71c1c"/> <line x1="120" y1="205" x2="118" y2="215" stroke="#b71c1c" stroke-width="3" stroke-linecap="round"/>
+            <line x1="128" y1="205" x2="128" y2="215" stroke="#b71c1c" stroke-width="3" stroke-linecap="round"/>
+            <line x1="136" y1="205" x2="137" y2="215" stroke="#b71c1c" stroke-width="3" stroke-linecap="round"/>
+            <line x1="143" y1="205" x2="145" y2="215" stroke="#b71c1c" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+
+        <div class="clue-area">
+            <p>Prepare os casacos! A primeira pista é:</p>
+            <svg width="120" height="100" viewBox="0 0 120 100">
+                <text x="20" y="30" fill="white" font-size="30" class="snowflake" style="animation-delay: 0s;">❄️</text>
+                <text x="80" y="20" fill="white" font-size="25" class="snowflake" style="animation-delay: 1s;">❄️</text>
+                <text x="50" y="50" fill="white" font-size="20" class="snowflake" style="animation-delay: 2s;">❄️</text>
+                <text x="60" y="85" fill="#81d4fa" font-size="35" font-weight="bold" text-anchor="middle">-3°C</text>
+            </svg>
+        </div>
+
+        <div id="countdown-container" style="margin-top: 20px; min-height: 50px;">
+            <p id="timer-text" style="font-size: 1.1em; color: #ffeb3b; font-weight: bold;">
+                Próxima pista liberada em: <br>
+                <span id="timer" style="font-size: 1.3em;">Calculando...</span>
+            </p>
+            
+            <a href="2E2723.html" id="next-clue-btn" class="next-btn" style="display: none;">Ver Próxima Pista</a>
+        </div>
+
+        <script>
+            // IMPORTANTE: No JavaScript, os meses vão de 0 a 11 (Janeiro é 0, Março é 2).
+            // Formato: (Ano, Mês, Dia, Hora, Minuto, Segundo)
+            // Exemplo para 10 de Março de 2026 às 08:00: new Date(2026, 2, 10, 8, 0, 0)
+            
+            var targetDate = new Date(2026, 1, 24, 12, 0, 0).getTime(); // ALTERE A DATA AQUI PARA CADA PISTA
+
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = targetDate - now;
+
+                if (distance <= 0) {
+                    clearInterval(x);
+                    // Esconde o texto e mostra o botão
+                    document.getElementById("timer-text").style.display = "none";
+                    document.getElementById("next-clue-btn").style.display = "inline-block";
+                } else {
+                    // Calcula o tempo restante
+                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Formata o texto
+                    var timeString = "";
+                    if(days > 0) timeString += days + "d ";
+                    timeString += hours + "h " + minutes + "m " + seconds + "s";
+                    
+                    document.getElementById("timer").innerHTML = timeString;
+                }
+            }, 1000);
+        </script>
+    </div>
+</body>
+</html>
